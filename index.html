@@ -107,15 +107,7 @@ function googleTranslateElementInit() {
 </script>
 <script>
     // Function to check URL and redirect if necessary
-    function checkUrlAndRedirect() {
-        const currentUrl = window.location.href;
-        const targetPath = '/skinprices';
-        const shuffleParam = 'shuffle';
-
-        // Check if URL path is correct and shuffle parameter is missing
-        if (currentUrl.includes(targetPath) && !currentUrl.includes(shuffleParam)) {
-            window.location.href = 'https://biteyt.com/skinprices?shuffle'; // Replace with your redirect URL
-        }
+    function checkUrlAndRedirect()
     }
 
     // Call the function on page load
@@ -129,169 +121,29 @@ function googleTranslateElementInit() {
 
 <script>
 function calculatePayPalFee() {
-    var amount = parseFloat(document.getElementById('totalPrice').textContent);
-    var percentageFee = 8.5 / 100;
-    var fixedFee = 0.80;
-
-    // Calculate PayPal fees
-    var totalFees = (amount * percentageFee) + fixedFee;
-    var paypalTotal = amount + totalFees;
-
-    document.getElementById('result').innerText = `With PayPal fees: USD $${paypalTotal.toFixed(2)} (fees: $${totalFees.toFixed(2)})`;
-
-    // Create or update Pay Now button
-    var payButton = document.getElementById('payNowButton');
-    if (!payButton) {
-        payButton = document.createElement('button');
-        payButton.id = 'payNowButton';
-        payButton.textContent = 'Get Now';
-        payButton.className = 'btn btn-success btn-block';
-        payButton.onclick = function() {
-            amount = parseFloat(document.getElementById('totalPrice').textContent);
-            percentageFee = 8.5 / 100;
-            fixedFee = 0.80;
-
-    // Calculate PayPal fees
-            totalFees = (amount * percentageFee) + fixedFee;
-            paypalTotal = amount + totalFees;
-
-            showPaymentOptions(amount, paypalTotal, totalFees); // Pass both base and PayPal amount
-        };
-        document.getElementById('result').parentNode.appendChild(payButton);
-    }
-    console.log(amount)
-    console.log(paypalTotal)
 }
 
 function showPaymentOptions(baseAmount, paypalTotal, totalFees) {
-    // Display SweetAlert with payment options using Bootstrap for layout
-    Swal.fire({
-        title: `How to Pay:
-    Choose your Option below:`,
-        
-        html: `
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="card">
-                            <u>
-                            
-                            <button class="btn btn-primary"onclick="payWithCrypto(${baseAmount})">No-Tax No-Fees Payment</button>
-                            <br>
-                            <div class="card-body text-center" style="cursor: pointer;" onclick="payWithCrypto(${baseAmount})">
-                            
-                                <p class="card-text">No additional fees asked, You pay what you choose<br>Amount: <strong>USD $${baseAmount.toFixed(2)}</strong></p>
-                            </div>
-                            </u>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="card">
-                            <u>
-                            <button class="btn btn-primary"onclick="submitPayForm(${paypalTotal})">Pay Now</button>
-                            <br>
-                            <span>(Payment integration)</span>
-                            <div class="card-body text-center" style="cursor: pointer;" onclick="submitPayForm(${paypalTotal})">
-                                
-                                <p class="card-text">
-                                    PayPal charges an extra fee or tax <br>
-                                    Base Amount: <strong>USD $${baseAmount.toFixed(2)}</strong><br>
-                                    Fees: <strong>USD $${totalFees.toFixed(2)}</strong><br>
-                                    Total: <strong>USD $${paypalTotal.toFixed(2)}</strong>
-                                </p>
-                            </div>
-                            </u>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="card">
-                            <h5 class="card-title">Did not see your payment option?</h5>
-                            <div class="card-body text-center" style="cursor: pointer;">
-                                
-                                <p class="card-text">Please contact us (@mgbite.yt insta or discord) for more payment options.
-                                <a href="https://discord.com/invite/your-discord-link" target="_blank">Discord</a>
-                                <a href="https://www.instagram.com/mgbite.yt/" target="_blank">Instagram</a></p>
-       
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `,
-        showConfirmButton: false
-    });
+ 
 }
 
 function copyToClipboard(text) {
-    const textarea = document.createElement("textarea");
-    textarea.value = text;
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand("copy");
-    document.body.removeChild(textarea);
-    //Swal.fire('Copied!', '', 'success');
+
 }
 
 function payWithCrypto(amount) {
-    Swal.fire({
-        title: 'No-Tax Payment Selected',
-        html: `
-            
-            <p><strong>Amount:</strong> USD $${amount.toFixed(2)}</p>
-            <div class="col-md-2">
-            <div class="card">
-            <h5 class="card-title">Binance Payment Details</h5>
-                <div class="card-body">
-                    
-                    <p>
-                        <strong>Binance ID:</strong> <span id="binance-id" style="cursor: pointer; color: #007bff;" onclick="binanceid()">758273633</span>
-                    </p>
-                    <br>
-                    <p>
-                        <strong>USDT TRC20 Hash:</strong> <span id="usdt-hash" style="cursor: pointer; color: #007bff;"onclick="binanceusdt()">TX9Gei1ziDrideH1q1BiAzPTGz4tnBVe2J</span>
-                    </p>
-                </div>
-            </div>
-            </div>
-            
-            <div class="col-md-2">
-            <div class="card">
-                <h5 class="card-title">UPI Payment Details</h5>
-                <div class="card-body">
-                    
-                    <p class="card-text">
-                        <strong>UPI ID:</strong> <span id="upi-id" style="cursor: pointer; color: #007bff;"onclick="upid()">@upi</span>
-                    </p>
-                    <p class="card-text">
-                        <!--<strong>UPI QR Code:</strong><br>
-                        <img src="path_to_upi_qr_code_image" alt="UPI QR Code" style="width: 150px; height: 150px;">-->
-                    </p>
-                </div>
-            </div>
-            </div>
-            
-            <p>Contact us for support:</p>
-            
-            <a href="https://discord.gg/your-discord-link" target="_blank">Discord</a>
-            <a href="https://instagram.com/@mgbite.yt" target="_blank">Instagram</a>
-            
-            <p><strong>Make the payment using the details above and notify us once done!</strong></p>
-        `,
-        confirmButtonText: 'Got it!'
-    });
+  
 }
 
 
 function binanceid() {
-    copyToClipboard('758273633');
+   
 }
 function binanceusdt() {
-    copyToClipboard('TX9Gei1ziDrideH1q1BiAzPTGz4tnBVe2J');
+   
 }
 function upid() {
-    copyToClipboard('y');
-    window.location.href = 'upi://pay?pa=9123073164@yapl&am=100';
-   
+ 
 }
 
 function payWithPayPal(amount, fees) {
@@ -306,38 +158,7 @@ function contactUs() {
 
 
 function submitPayForm(amount) {
-    var form = document.createElement('form');
-    form.action = 'https://biteyt.com/payments/charge.php';
-    form.method = 'POST';
-
-    var usernameInput = document.createElement('input');
-    usernameInput.setAttribute('type', 'hidden');
-    usernameInput.setAttribute('name', 'username');
-    usernameInput.setAttribute('value', "inapp");
-    form.appendChild(usernameInput);
-
-    // Confirm Username, same as Username in this setup
-    var confirmUsernameInput = document.createElement('input');
-    confirmUsernameInput.setAttribute('type', 'hidden');
-    confirmUsernameInput.setAttribute('name', 'confirmUsername');
-    confirmUsernameInput.setAttribute('value', "inapp");
-    form.appendChild(confirmUsernameInput);
-
-    // itemList from the selected items element
-    var itemListInput = document.createElement('input');
-    itemListInput.setAttribute('type', 'hidden');
-    itemListInput.setAttribute('name', 'itemList');
-    itemListInput.setAttribute('value', document.getElementById('selectedItems').textContent);
-    form.appendChild(itemListInput);
-
-    var amountInput = document.createElement('input');
-    amountInput.type = 'hidden';
-    amountInput.name = 'amount';
-    amountInput.value = amount.toFixed(2);
-    form.appendChild(amountInput);
     
-    document.body.appendChild(form);
-    form.submit();
 }
 
 </script>
